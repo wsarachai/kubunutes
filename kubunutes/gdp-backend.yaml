@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gdp-backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gdp-backend
+  template:
+    metadata:
+      labels:
+        app: gdp-backend
+    spec:
+      containers:
+        - name: gdp-backend
+          image: wsarachai/gdp-backend:local
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: gdp-environment
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: gdp-environment
+                  key: MONGO_INITDB_ROOT_PASSWORD
+            - name: MONGO_INITDB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: gdp-environment
+                  key: MONGO_INITDB_DATABASE
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gdp-environment
+                  key: MONGO_HOST 
+            - name: BACKEND_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: gdp-environment
+                  key: BACKEND_PORT
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: gdp-environment
+                  key: JWT_SECRET

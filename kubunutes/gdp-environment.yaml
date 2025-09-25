@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gdp-environment
+  namespace: default
+data:
+  # Environment variables for GDP backend
+  MONGO_INITDB_ROOT_USERNAME: sarachaii
+  MONGO_INITDB_ROOT_PASSWORD: 7bKkvNJO3IsNppCO
+  MONGO_INITDB_DATABASE: gdp-local
+  MONGO_HOST: mongodb-service.default
+  BACKEND_PORT: "8080"
+  JWT_SECRET: "3924fcb663a4dbbd5d5245b22d48afac12d9abc784f551228a0d59c148f617042bf5ae61e6f14ee6634a1688fa03869ede3fd6b75c6832632552252d66011458"
+
+  # Environment variables for MongoDB Express
+  ME_CONFIG_MONGODB_ADMINUSERNAME: sarachaii
+  ME_CONFIG_MONGODB_ADMINPASSWORD: 7bKkvNJO3IsNppCO
+  ME_CONFIG_MONGODB_AUTH_DATABASE: admin
+  ME_CONFIG_BASICAUTH_USERNAME: root
+  ME_CONFIG_BASICAUTH_PASSWORD: keng1976
